@@ -17,8 +17,8 @@ function Card({ post, comments, onDelete, onEdit }) {
       {comments.map((comment, index) => (
         <Text key={index}>{comment.body}</Text>
       ))}
-      <Button title="Delete" color="red" onPress={() => onDelete(post.id)} />
       <Button title="Edit" onPress={() => onEdit(post)} />
+      <Button title="Delete" color="red" onPress={() => onDelete(post.id)} />
     </View>
   );
 }
@@ -76,11 +76,11 @@ export default function App() {
       ))}
       <Modal visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modal}>
-          <Text>Edit Post</Text>
+          <Text>Editar Post</Text>
           <TextInput value={editingPost?.title} onChangeText={text => setEditingPost({ ...editingPost, title: text })} />
           <TextInput value={editingPost?.author} onChangeText={text => setEditingPost({ ...editingPost, author: text })} />
           <TextInput value={editingPost?.image} onChangeText={text => setEditingPost({ ...editingPost, image: text })} />
-          <Button title="Save" onPress={handleSave} />
+          <Button title="Guardar" onPress={handleSave} />
         </View>
       </Modal>
       <StatusBar style="auto" />
@@ -120,5 +120,9 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 100,
+    marginBottom: 10, // Add bottom margin to the image
+  },
+  button: {
+    marginTop: 10, // Add top margin to the buttons
   },
 });
