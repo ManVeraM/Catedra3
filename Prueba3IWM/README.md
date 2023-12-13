@@ -54,3 +54,13 @@ http://localhost:3000/posts/{postId}
 
 Mas documentación
 https://github.com/typicode/json-server
+
+
+For mobile: How to run 
+## Use the following command to enter the frontend folder: 
+    cd Catedra 
+##Install dependencies, with the following command in the terminal 
+    npm install. 
+##Run the project, with 
+    npx expo start and press w
+it will only run this way by some reason, if you run it via android all petitions will be denied the page will automatically load
