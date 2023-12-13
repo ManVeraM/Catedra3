@@ -10,17 +10,27 @@ import { Modal, TextInput } from 'react-native';
 function Card({ post, comments, onDelete, onEdit }) {
   return (
     <View style={styles.card}>
-      <Text>{post.id}</Text>
-      <Text>{post.title}</Text>
-      <Text>{post.author}</Text>
+      <Text>Titulo: {post.title}</Text>
+      <Divider />
+      <Text>Autor: {post.author}</Text>
+      <Divider />
       <Image source={{ uri: post.image }} style={styles.image} />
+      {comments.length > 0 ? <Text>Comentarios:</Text> : <Text>No hay comentarios</Text>}
+      <Divider />
       {comments.map((comment, index) => (
-        <Text key={index}>{comment.body}</Text>
+        <React.Fragment key={index}>
+          <Text>{comment.body}</Text>
+          <Divider />
+        </React.Fragment>
       ))}
-      <Button title="Edit" onPress={() => onEdit(post)} />
-      <Button title="Delete" color="red" onPress={() => onDelete(post.id)} />
+      <Button title="Delete" color="red" onPress={() => onDelete(post.id)} style={styles.button} />
+      <Button title="Edit" onPress={() => onEdit(post)} style={styles.button} />
     </View>
   );
+}
+
+function Divider() {
+  return <View style={styles.divider} />;
 }
 
 export default function App() {
@@ -71,6 +81,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      
       {posts.map((post, index) => (
         <Card key={index} post={post} comments={comments[post.id] || []} onDelete={handleDelete} onEdit={handleEdit} />
       ))}
@@ -124,5 +135,10 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10, // Add top margin to the buttons
+  },
+  divider: {
+    height: 1,
+    backgroundColor: 'gray',
+    marginVertical: 10,
   },
 });
