@@ -38,6 +38,10 @@ export default function App() {
   const [comments, setComments] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
+  const [search, setSearch] = useState('');
+  const filteredPosts = posts.filter(post => post.author.toLowerCase().includes(search.toLowerCase()));
+
+
 
 
   const handleDelete = (id) => {
@@ -80,9 +84,15 @@ export default function App() {
   }, []);
 
   return (
+    
     <View style={styles.container}>
-      
-      {posts.map((post, index) => (
+      <TextInput
+        style={styles.searchBar}
+        placeholder="Buscar por usuario"
+        value={search}
+        onChangeText={setSearch}
+      />
+      {filteredPosts.map((post, index) => (
         <Card key={index} post={post} comments={comments[post.id] || []} onDelete={handleDelete} onEdit={handleEdit} />
       ))}
       <Modal visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
@@ -110,6 +120,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  searchBar: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    paddingLeft: 10,
+    marginBottom: 10,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
   modal: {
     flex: 1,
     justifyContent: 'center',
@@ -122,6 +144,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   card: {
+    
     borderWidth: 1,
     borderColor: '#000',
     padding: 10,
