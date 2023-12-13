@@ -7,6 +7,7 @@ import { Button } from 'react-native';
 import { Modal, TextInput } from 'react-native';
 
 
+
 function Card({ post, comments, onDelete, onEdit }) {
   return (
     <View style={styles.card}>
